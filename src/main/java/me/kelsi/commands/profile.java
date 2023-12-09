@@ -28,7 +28,6 @@ public class profile extends ListenerAdapter {
         builder.setTitle("Профиль " + username);
         builder.setColor(Color.PINK);
         builder.setDescription("**Вскопано всего блоков:**\n%value% <:blocks_ms:1183029079780368464>");
-        builder.addField("**Типы блоков**", "типы блоков, которые вы добыли", false);
         builder.addField("Вскопано камня: ", "%value% <:stone_ms:1182703138285826119>", true);
         builder.addField("Вскопано угля: ", "%value% <:coal_ore_ms:1182711904045641838>", true);
         builder.addField("Вскопано железа: ", "%value% <:iron_ore_ms:1182703752092844143>", true);
