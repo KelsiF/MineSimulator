@@ -22,7 +22,7 @@ public class profile extends ListenerAdapter {
         EmbedBuilder builder = new EmbedBuilder();
         User user1 = event.getUser();
 
-        if (!blocks.containsKey(user) || !money.containsKey(user)) {
+        if (!blocks.containsKey(user) || !money.containsKey(user) || !pickaxe.containsKey(user)) {
             //количество блоков
             blocks.put(user1, 0);
             //количество камня
@@ -39,6 +39,8 @@ public class profile extends ListenerAdapter {
             emerald.put(user1, 0);
             //количество монет
             money.put(user1, 0);
+            // экипированная кирка
+            pickaxe.put(user1, "WOODEN_PICKAXE");
 
             if (user != null) {
                 ds_user = user.getAsUser();
@@ -46,6 +48,28 @@ public class profile extends ListenerAdapter {
                 ds_user = event.getUser();
             }
             String username = ds_user.getName();
+
+            String pickaxe_name = pickaxe.get(user1);
+            switch (pickaxe_name) {
+                case ("WOODEN_PICKAXE"):
+                    pickaxe_name = "Деревянная кирка";
+                    break;
+                case ("STONE_PICKAXE"):
+                    pickaxe_name = "Каменная кирка";
+                    break;
+                case ("IRON_PICKAXE"):
+                    pickaxe_name = "Железная кирка";
+                    break;
+                case ("GOLDEN_PICKAXE"):
+                    pickaxe_name = "Золотая кирка";
+                    break;
+                case ("DIAMOND_PICKAXE"):
+                    pickaxe_name = "Алмазная кирка";
+                    break;
+                default:
+                    pickaxe_name = "Деревянная кирка";
+                    break;
+            }
 
             builder.setTitle("Профиль " + username);
             builder.setColor(Color.PINK);
@@ -57,8 +81,10 @@ public class profile extends ListenerAdapter {
             builder.addField("Вскопано золота: ", gold.get(user1) + " <:gold_ore_ms:1182710543333740545>", true);
             builder.addField("Вскопано алмазов: ", diamond.get(user1) + " <:diamond_ore_ms:1182711031110307860>", true);
             builder.addField("Вскопано изумрудов: ", emerald.get(user1) + " <:emerald_ore_ms:1182710781930909787>", true);
-            //builder.addField(" ", " ", false);
+            builder.addBlankField(false);
             builder.addField("Монет: ", money.get(user1) + " <:coin_ms:1182950601911447592>", false);
+            builder.addBlankField(false);
+            builder.addField("Ваша кирка: ", pickaxe_name + " <:wooden_pickaxe_ms:1182718389500776509>", false);
 
             event.replyEmbeds(builder.build()).queue();
         }

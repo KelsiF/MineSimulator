@@ -21,12 +21,14 @@ public class Listeners extends ListenerAdapter {
     public static HashMap<User, Integer> diamond = new HashMap<>();
     public static HashMap<User, Integer> emerald = new HashMap<>();
     public static HashMap<User, Integer> money = new HashMap<>();
+    public static HashMap<User, String> pickaxe = new HashMap<>();
 
 
     @Override
     public void onReady(@NotNull ReadyEvent event) {
         Guild guild = event.getJDA().getGuildById(918438356642324480L);
         guild.upsertCommand("profile", "Показывает профиль пользователя в боте").addOptions(new OptionData(OptionType.USER, "user", "Если хотите увидеть свой профиль, то ничего не пишите в этом аргументе", false)).queue();
+        guild.upsertCommand("mine", "Отправиться в шахту за рудой").queue();
     }
 
     @Override
@@ -50,6 +52,8 @@ public class Listeners extends ListenerAdapter {
             emerald.put(user, 0);
             //количество монет
             money.put(user, 0);
+            // экипированная кирка
+            pickaxe.put(user, "WOODEN_PICKAXE");
         }
     }
 
