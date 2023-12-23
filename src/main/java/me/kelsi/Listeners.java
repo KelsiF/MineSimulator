@@ -9,7 +9,12 @@ import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Constructor;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class Listeners extends ListenerAdapter {
@@ -32,12 +37,14 @@ public class Listeners extends ListenerAdapter {
         guild.upsertCommand("mine", "Отправиться в шахту за рудой").queue();
         guild.upsertCommand("start", "Создать профиль в боте").queue();
         guild.upsertCommand("sell", "Продать всю руду, что у вас есть").queue();
+        guild.upsertCommand("shop", "Открыть магазин бота").addOptions(new OptionData(OptionType.STRING, "pickaxe", "Напишите нужную кирку сюда, узнать, что писать можно в последних строках команды /shop", false)).queue();
     }
 
     @Override
     public void onGuildMemberJoin(@NotNull GuildMemberJoinEvent event) {
 
         User user = event.getUser();
+
         if (!blocks.containsKey(user) || !money.containsKey(user)) {
             //количество блоков
             blocks.put(user, 0.0);
@@ -57,6 +64,7 @@ public class Listeners extends ListenerAdapter {
             money.put(user, 0.0);
             // экипированная кирка
             pickaxe.put(user, "WOODEN_PICKAXE");
+
         }
     }
 

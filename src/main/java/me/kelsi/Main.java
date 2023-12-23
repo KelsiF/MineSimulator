@@ -1,9 +1,6 @@
 package me.kelsi;
 
-import me.kelsi.commands.mine;
-import me.kelsi.commands.profile;
-import me.kelsi.commands.sell;
-import me.kelsi.commands.start;
+import me.kelsi.commands.*;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -23,6 +20,7 @@ public class Main {
         bot.addEventListener(new mine());
         bot.addEventListener(new start());
         bot.addEventListener(new sell());
+        bot.addEventListener(new shop());
 
     }
 }

@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Random;
 import me.kelsi.Listeners.*;
@@ -81,27 +82,32 @@ public class mine extends ListenerAdapter {
 
         EmbedBuilder builder = new EmbedBuilder();
 
+        if (stone.containsKey(user)) {
 
-        builder.setTitle("Вы отправились в шахту..");
-        builder.setDescription("**Добытые ресурсы:**\n");
-        builder.addBlankField(false);
-        builder.addField("Камень:",  stone1 + " <:stone_ms:1182703138285826119>", true);
-        builder.addBlankField(true);
-        builder.addField("Уголь:", coal1 + " <:coal_ore_ms:1182711904045641838>", true);
-        builder.addField("Железо:", iron1 + " <:iron_ore_ms:1182703752092844143>", true);
-        builder.addBlankField(true);
-        builder.addField("Золото:", gold1 + " <:gold_ore_ms:1182710543333740545>", true);
-        builder.addField("Алмазы:", diamond1 + " <:diamond_ore_ms:1182711031110307860>", true);
-        builder.addBlankField(true);
-        builder.addField("Изумруды:", emerald1 + " <:emerald_ore_ms:1182710781930909787>", true);
-        event.replyEmbeds(builder.build()).queue();
-        blocks.put(user, blocks.get(user) + sum_blocks);
-        stone.put(user, stone.get(user) + stone1);
-        coal.put(user, coal.get(user) + coal1);
-        iron.put(user, iron.get(user) + iron1);
-        gold.put(user, gold.get(user) + gold1);
-        diamond.put(user, diamond.get(user) + diamond1);
-        emerald.put(user, emerald.get(user) + emerald1);
+            builder.setColor(Color.PINK);
+            builder.setTitle("Вы отправились в шахту..");
+            builder.setDescription("**Добытые ресурсы:**\n");
+            builder.addBlankField(false);
+            builder.addField("Камень:", stone1 + " <:stone_ms:1182703138285826119>", true);
+            builder.addBlankField(true);
+            builder.addField("Уголь:", coal1 + " <:coal_ore_ms:1182711904045641838>", true);
+            builder.addField("Железо:", iron1 + " <:iron_ore_ms:1182703752092844143>", true);
+            builder.addBlankField(true);
+            builder.addField("Золото:", gold1 + " <:gold_ore_ms:1182710543333740545>", true);
+            builder.addField("Алмазы:", diamond1 + " <:diamond_ore_ms:1182711031110307860>", true);
+            builder.addBlankField(true);
+            builder.addField("Изумруды:", emerald1 + " <:emerald_ore_ms:1182710781930909787>", true);
+            event.replyEmbeds(builder.build()).queue();
+            blocks.put(user, blocks.get(user) + sum_blocks);
+            stone.put(user, stone.get(user) + stone1);
+            coal.put(user, coal.get(user) + coal1);
+            iron.put(user, iron.get(user) + iron1);
+            gold.put(user, gold.get(user) + gold1);
+            diamond.put(user, diamond.get(user) + diamond1);
+            emerald.put(user, emerald.get(user) + emerald1);
+        } else {
+            event.reply("У вас не создан аккаунт!\nЧтобы его создать используйте команду /start").queue();
+        }
     }
 
 }

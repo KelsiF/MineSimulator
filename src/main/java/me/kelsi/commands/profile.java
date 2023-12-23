@@ -33,22 +33,22 @@ public class profile extends ListenerAdapter {
         if (stone.containsKey(ds_user)) {
             switch (pickaxe_name) {
                 case ("WOODEN_PICKAXE"):
-                    pickaxe_name = "Деревянная кирка";
+                    pickaxe_name = "Деревянная кирка <:wooden_pickaxe_ms:1182718389500776509>";
                     break;
                 case ("STONE_PICKAXE"):
-                    pickaxe_name = "Каменная кирка";
+                    pickaxe_name = "Каменная кирка <:stone_pickaxe_ms:1182718543926677636>";
                     break;
                 case ("IRON_PICKAXE"):
-                    pickaxe_name = "Железная кирка";
+                    pickaxe_name = "Железная кирка <:iron_pickaxe_ms:1182718027440074873>";
                     break;
                 case ("GOLDEN_PICKAXE"):
-                    pickaxe_name = "Золотая кирка";
+                    pickaxe_name = "Золотая кирка <:gold_pickaxe_ms:1182718931375509504>";
                     break;
                 case ("DIAMOND_PICKAXE"):
-                    pickaxe_name = "Алмазная кирка";
+                    pickaxe_name = "Алмазная кирка <:diamond_pickaxe_ms:1182718739909718156>";
                     break;
                 default:
-                    pickaxe_name = "Деревянная кирка";
+                    pickaxe_name = "Деревянная кирка <:wooden_pickaxe_ms:1182718389500776509>";
                     break;
             }
             builder.setTitle("Профиль " + username);
@@ -67,6 +67,8 @@ public class profile extends ListenerAdapter {
             builder.addField("Ваша кирка: ", pickaxe_name + " <:wooden_pickaxe_ms:1182718389500776509>", false);
 
             event.replyEmbeds(builder.build()).queue();
+        } else {
+            event.reply("У вас не создан аккаунт!\nЧтобы его создать используйте команду /start").queue();
         }
 
     }
