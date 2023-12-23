@@ -31,25 +31,38 @@ public class profile extends ListenerAdapter {
         }
 
         if (stone.containsKey(ds_user)) {
-            pickaxe_name = switch (pickaxe_name) {
-                case ("WOODEN_PICKAXE") -> "Деревянная кирка";
-                case ("STONE_PICKAXE") -> "Каменная кирка";
-                case ("IRON_PICKAXE") -> "Железная кирка";
-                case ("GOLDEN_PICKAXE") -> "Золотая кирка";
-                case ("DIAMOND_PICKAXE") -> "Алмазная кирка";
-            };
+            switch (pickaxe_name) {
+                case ("WOODEN_PICKAXE"):
+                    pickaxe_name = "Деревянная кирка";
+                    break;
+                case ("STONE_PICKAXE"):
+                    pickaxe_name = "Каменная кирка";
+                    break;
+                case ("IRON_PICKAXE"):
+                    pickaxe_name = "Железная кирка";
+                    break;
+                case ("GOLDEN_PICKAXE"):
+                    pickaxe_name = "Золотая кирка";
+                    break;
+                case ("DIAMOND_PICKAXE"):
+                    pickaxe_name = "Алмазная кирка";
+                    break;
+                default:
+                    pickaxe_name = "Деревянная кирка";
+                    break;
+            }
             builder.setTitle("Профиль " + username);
             builder.setColor(Color.PINK);
             builder.setThumbnail(ds_user.getAvatarUrl());
-            builder.setDescription("**Вскопано всего блоков:**\n" + blocks.get(user1) + " <:blocks_ms:1183029079780368464> \n");
-            builder.addField("Вскопано камня: ", stone.get(user1) + " <:stone_ms:1182703138285826119>", true);
-            builder.addField("Вскопано угля: ", coal.get(user1) + " <:coal_ore_ms:1182711904045641838>", true);
-            builder.addField("Вскопано железа: ", iron.get(user1) + " <:iron_ore_ms:1182703752092844143>", true);
-            builder.addField("Вскопано золота: ", gold.get(user1) + " <:gold_ore_ms:1182710543333740545>", true);
-            builder.addField("Вскопано алмазов: ", diamond.get(user1) + " <:diamond_ore_ms:1182711031110307860>", true);
-            builder.addField("Вскопано изумрудов: ", emerald.get(user1) + " <:emerald_ore_ms:1182710781930909787>", true);
+            builder.setDescription("**Вскопано всего блоков:**\n" + String.format("%.1f", blocks.get(user1)) + " <:blocks_ms:1183029079780368464> \n");
+            builder.addField("Вскопано камня: ", String.format("%.1f", stone.get(user1)) + " <:stone_ms:1182703138285826119>", true);
+            builder.addField("Вскопано угля: ", String.format("%.1f", coal.get(user1)) + " <:coal_ore_ms:1182711904045641838>", true);
+            builder.addField("Вскопано железа: ", String.format("%.1f", iron.get(user1)) + " <:iron_ore_ms:1182703752092844143>", true);
+            builder.addField("Вскопано золота: ", String.format("%.1f", gold.get(user1)) + " <:gold_ore_ms:1182710543333740545>", true);
+            builder.addField("Вскопано алмазов: ", String.format("%.1f", diamond.get(user1)) + " <:diamond_ore_ms:1182711031110307860>", true);
+            builder.addField("Вскопано изумрудов: ", String.format("%.1f", emerald.get(user1)) + " <:emerald_ore_ms:1182710781930909787>", true);
             builder.addBlankField(false);
-            builder.addField("Монет: ", money.get(user1) + " <:coin_ms:1182950601911447592>", false);
+            builder.addField("Монет: ", String.format("%.1f", money.get(user1)) + " <:coin_ms:1182950601911447592>", false);
             builder.addBlankField(false);
             builder.addField("Ваша кирка: ", pickaxe_name + " <:wooden_pickaxe_ms:1182718389500776509>", false);
 

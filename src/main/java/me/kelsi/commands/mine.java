@@ -95,13 +95,13 @@ public class mine extends ListenerAdapter {
         builder.addBlankField(true);
         builder.addField("Изумруды:", emerald1 + " <:emerald_ore_ms:1182710781930909787>", true);
         event.replyEmbeds(builder.build()).queue();
-        blocks.put(user, sum_blocks);
-        stone.put(user, stone1);
-        coal.put(user, coal1);
-        iron.put(user, iron1);
-        gold.put(user, gold1);
-        diamond.put(user, diamond1);
-        emerald.put(user, emerald1);
+        blocks.put(user, blocks.get(user) + sum_blocks);
+        stone.put(user, stone.get(user) + stone1);
+        coal.put(user, coal.get(user) + coal1);
+        iron.put(user, iron.get(user) + iron1);
+        gold.put(user, gold.get(user) + gold1);
+        diamond.put(user, diamond.get(user) + diamond1);
+        emerald.put(user, emerald.get(user) + emerald1);
     }
 
 }

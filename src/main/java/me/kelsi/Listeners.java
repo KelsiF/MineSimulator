@@ -31,6 +31,7 @@ public class Listeners extends ListenerAdapter {
         Objects.requireNonNull(guild).upsertCommand("profile", "Показывает профиль пользователя в боте").addOptions(new OptionData(OptionType.USER, "user", "Если хотите увидеть свой профиль, то ничего не пишите в этом аргументе", false)).queue();
         guild.upsertCommand("mine", "Отправиться в шахту за рудой").queue();
         guild.upsertCommand("start", "Создать профиль в боте").queue();
+        guild.upsertCommand("sell", "Продать всю руду, что у вас есть").queue();
     }
 
     @Override
