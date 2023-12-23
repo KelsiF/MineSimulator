@@ -18,63 +18,30 @@ public class profile extends ListenerAdapter {
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         if (!event.getName().equalsIgnoreCase("profile")) return;
         OptionMapping user = event.getOption("user");
-        User ds_user = null;
+        User ds_user = event.getUser();
         EmbedBuilder builder = new EmbedBuilder();
         User user1 = event.getUser();
+        String username = ds_user.getName();
 
-        if (!blocks.containsKey(user) || !money.containsKey(user) || !pickaxe.containsKey(user)) {
-            //количество блоков
-            blocks.put(user1, 0);
-            //количество камня
-            stone.put(user1, 0);
-            //количество угля
-            coal.put(user1, 0);
-            //количество железа
-            iron.put(user1, 0);
-            //количество золота
-            gold.put(user1, 0);
-            //количество алмазов
-            diamond.put(user1, 0);
-            //количество изумрудов
-            emerald.put(user1, 0);
-            //количество монет
-            money.put(user1, 0);
-            // экипированная кирка
-            pickaxe.put(user1, "WOODEN_PICKAXE");
+        String pickaxe_name = pickaxe.get(user1);
+        if (user != null) {
+            ds_user = user.getAsUser();
+        } else {
+            ds_user = event.getUser();
+        }
 
-            if (user != null) {
-                ds_user = user.getAsUser();
-            } else if (user == null) {
-                ds_user = event.getUser();
-            }
-            String username = ds_user.getName();
-
-            String pickaxe_name = pickaxe.get(user1);
-            switch (pickaxe_name) {
-                case ("WOODEN_PICKAXE"):
-                    pickaxe_name = "Деревянная кирка";
-                    break;
-                case ("STONE_PICKAXE"):
-                    pickaxe_name = "Каменная кирка";
-                    break;
-                case ("IRON_PICKAXE"):
-                    pickaxe_name = "Железная кирка";
-                    break;
-                case ("GOLDEN_PICKAXE"):
-                    pickaxe_name = "Золотая кирка";
-                    break;
-                case ("DIAMOND_PICKAXE"):
-                    pickaxe_name = "Алмазная кирка";
-                    break;
-                default:
-                    pickaxe_name = "Деревянная кирка";
-                    break;
-            }
-
+        if (stone.containsKey(ds_user)) {
+            pickaxe_name = switch (pickaxe_name) {
+                case ("WOODEN_PICKAXE") -> "Деревянная кирка";
+                case ("STONE_PICKAXE") -> "Каменная кирка";
+                case ("IRON_PICKAXE") -> "Железная кирка";
+                case ("GOLDEN_PICKAXE") -> "Золотая кирка";
+                case ("DIAMOND_PICKAXE") -> "Алмазная кирка";
+            };
             builder.setTitle("Профиль " + username);
             builder.setColor(Color.PINK);
             builder.setThumbnail(ds_user.getAvatarUrl());
-            builder.setDescription("**Вскопано всего блоков:**\n" + blocks.get(user1) + " <:blocks_ms:1183029079780368464>");
+            builder.setDescription("**Вскопано всего блоков:**\n" + blocks.get(user1) + " <:blocks_ms:1183029079780368464> \n");
             builder.addField("Вскопано камня: ", stone.get(user1) + " <:stone_ms:1182703138285826119>", true);
             builder.addField("Вскопано угля: ", coal.get(user1) + " <:coal_ore_ms:1182711904045641838>", true);
             builder.addField("Вскопано железа: ", iron.get(user1) + " <:iron_ore_ms:1182703752092844143>", true);
